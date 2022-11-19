@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +64,7 @@ public class ExportImportController extends Controller {
 		        FileItemStream item = iterator.next(); 
 		        if (!item.isFormField() && item.getFieldName().equals("file")) {
 		          InputStream is = item.openStream();
-		          tempFile = File.createTempFile("wpbImport", null);
+		          tempFile = Files.createTempFile("wpbImport", null).toFile();
 		          FileOutputStream fos = new FileOutputStream(tempFile);
 		          IOUtils.copy(is, fos);
 		          fos.close();
